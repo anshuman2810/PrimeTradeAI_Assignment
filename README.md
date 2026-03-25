@@ -1,4 +1,4 @@
-# MLOps Batch Signal Pipeline : Anshuman Prajapati
+# ML/MLOps Internship Batch Signal Pipeline : Anshuman Prajapati
 
 ## Project Overview
 
