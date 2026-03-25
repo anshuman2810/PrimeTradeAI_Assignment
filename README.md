@@ -22,11 +22,11 @@ docker run --rm mlops-task
 
 ## Example Output
 
-### Successful:
+### ✅ Successful
 ```json
 {
   "version": "v1",
-  "rows_processed": 10000, 
+  "rows_processed": 10000,
   "metric": "signal_rate",
   "value": 0.4990,
   "latency_ms": 127,
@@ -35,10 +35,11 @@ docker run --rm mlops-task
 }
 ```
 
-### Failed:
+### ❌ Failed
 ```json
 {
   "version": "v1",
   "status": "error",
   "error_message": "Description of what went wrong"
-}```
+}
+```
