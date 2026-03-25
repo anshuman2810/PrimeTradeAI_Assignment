@@ -1,8 +1,8 @@
-2026-03-25 16:56:11,140 - INFO - Started Job
-2026-03-25 16:56:11,141 - INFO - Configuration loaded: Seed=42, Window=5, Version=v1
-2026-03-25 16:56:11,164 - INFO - Dataset loaded with 10000 rows.
-2026-03-25 16:56:11,165 - INFO - Computing rolling mean
-2026-03-25 16:56:11,165 - INFO - Generating signal values
-2026-03-25 16:56:11,165 - INFO - First window-1 rows contain NaN rolling_mean and are excluded from signal_rate computation
-2026-03-25 16:56:11,166 - INFO - Metrics computation completed: {'version': 'v1', 'rows_processed': 10000, 'metric': 'signal_rate', 'value': 0.4989, 'latency_ms': 26, 'seed': 42, 'status': 'success'}
-2026-03-25 16:56:11,167 - INFO - Job completed successfully
+2026-03-25 17:13:46,407 - INFO - Started Job
+2026-03-25 17:13:46,408 - INFO - Configuration loaded: Seed=42, Window=5, Version=v1
+2026-03-25 17:13:46,433 - INFO - Dataset loaded with 10000 rows.
+2026-03-25 17:13:46,433 - INFO - Computing rolling mean
+2026-03-25 17:13:46,434 - INFO - Generating signal values
+2026-03-25 17:13:46,434 - INFO - First window-1 rows contain NaN rolling_mean and are excluded from signal_rate computation
+2026-03-25 17:13:46,434 - INFO - Metrics computation completed: {'version': 'v1', 'rows_processed': 10000, 'metric': 'signal_rate', 'value': 0.4989, 'latency_ms': 26, 'seed': 42, 'status': 'success'}
+2026-03-25 17:13:46,435 - INFO - Job completed successfully

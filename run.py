@@ -17,31 +17,18 @@ def logging_setup(log_file):
     )
 
 def load_config(config_path):
-    try:
-        with open(config_path, 'r') as file:
-            config = yaml.safe_load(file)
+    with open(config_path, 'r') as file:
+        config = yaml.safe_load(file)
 
-        if not isinstance(config, dict):
-            raise ValueError("Invalid config structure")
+    required_keys = ['seed', 'window', 'version']
 
-        required_keys = ['seed', 'window', 'version']
+    for key in required_keys:
+        if key not in config:
+            raise KeyError(f"Missing required configuration key: {key}")
+        if config['window'] <= 0:
+            raise ValueError("window must be > 0")
 
-        for key in required_keys:
-            if key not in config:
-                raise KeyError(f"Missing required configuration key: {key}")
-        if not isinstance(config["seed"], int):
-            raise ValueError("Seed must be integer")
-
-        if not isinstance(config["window"], int) or config["window"] <= 0:
-            raise ValueError("Window must be positive integer")
-
-        if not isinstance(config["version"], str):
-            raise ValueError("Version must be string")
-
-        return config
-
-    except Exception as e:
-        raise RuntimeError(f"Error loading configuration: {e}")
+    return config
     
 def load_dataset(dataset_path):
     try:
@@ -60,7 +47,7 @@ def load_dataset(dataset_path):
         if df.empty:
             raise ValueError("Dataset is empty.")
         if "close" not in df.columns:
-            raise KeyError("Dataset must contain 'close' column for processing.")
+            raise KeyError("Expected 'close' column")
         return df
     except FileNotFoundError:
         raise RuntimeError(f"Dataset file not found: {dataset_path}")
