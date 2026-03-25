@@ -1,5 +1,18 @@
 # MLOps Batch Signal Pipeline : Anshuman Prajapati
 
+## Project Overview
+
+This project implements a deterministic batch signal pipeline that:
+
+- loads configuration from YAML
+- validates dataset input
+- computes rolling mean on close prices
+- generates binary trading signal
+- writes structured metrics output
+- logs execution steps
+- runs locally and inside Docker
+
+
 ## To run locally use:
 ```bash
 python run.py \
@@ -10,6 +23,18 @@ python run.py \
 ```
 
 ## For Docker image, use:
+
+## Docker Behavior
+
+Running the container executes the pipeline automatically:
+
+docker build -t mlops-task .
+docker run --rm mlops-task
+
+This produces:
+- metrics.json
+- run.log
+- stdout metrics output
 
 ## Docker Build
 ```bash
