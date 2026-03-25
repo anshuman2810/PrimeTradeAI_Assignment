@@ -30,7 +30,18 @@ def load_config(config_path):
     
 def load_dataset(dataset_path):
     try:
-        df = pd.read_csv(dataset_path)
+        df = pd.read_csv(dataset_path, encoding="utf-8-sig")
+
+        if len(df.columns) == 1:
+            df = pd.read_csv(
+                dataset_path,
+                sep=",",
+                encoding="utf-8-sig",
+                quoting=3  
+            )
+
+        df.columns = df.columns.str.strip().str.lower()
+
         if df.empty:
             raise ValueError("Dataset is empty.")
         if "close" not in df.columns:
@@ -76,7 +87,7 @@ def main():
 
         df= load_dataset(args.input)
         logging.info(f"Dataset loaded with {len(df)} rows.")
-        
+
         df= signal_computation(df, window)
         valid_rows=df['signal'].dropna()
         signal_rate= valid_rows.mean()

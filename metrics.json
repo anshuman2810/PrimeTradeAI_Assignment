@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "rows_processed": 10000,
+  "metric": 0.4989,
+  "value": 0.4989,
+  "latency_ms": 27,
+  "seed": 42,
+  "status": "success"
+}
