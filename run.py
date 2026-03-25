@@ -55,7 +55,9 @@ def load_dataset(dataset_path):
         raise RuntimeError(f"Other error loading dataset: {e}")
     
 def signal_computation(df, window):
+    logging.info("Computing rolling mean")
     df['rolling_mean'] = df['close'].rolling(window=window).mean()
+    logging.info("Generating signal values")
     df['signal'] = (df['close'] > df['rolling_mean']).astype(int)
     return df
 def save_metrics(metrics, output_path):
@@ -96,7 +98,7 @@ def main():
         metrics = {
             "version": version,
             "rows_processed" : len(df),
-            "metric": signal_rate,
+            "metric": "signal_rate",
             "value" :  round(float(signal_rate),4),
             "latency_ms": latency_ms,
             "seed": seed,
