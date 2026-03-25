@@ -20,11 +20,26 @@ def load_config(config_path):
     try:
         with open(config_path, 'r') as file:
             config = yaml.safe_load(file)
+
+        if not isinstance(config, dict):
+            raise ValueError("Invalid config structure")
+
         required_keys = ['seed', 'window', 'version']
+
         for key in required_keys:
             if key not in config:
                 raise KeyError(f"Missing required configuration key: {key}")
+        if not isinstance(config["seed"], int):
+            raise ValueError("Seed must be integer")
+
+        if not isinstance(config["window"], int) or config["window"] <= 0:
+            raise ValueError("Window must be positive integer")
+
+        if not isinstance(config["version"], str):
+            raise ValueError("Version must be string")
+
         return config
+
     except Exception as e:
         raise RuntimeError(f"Error loading configuration: {e}")
     
@@ -59,7 +74,9 @@ def signal_computation(df, window):
     df['rolling_mean'] = df['close'].rolling(window=window).mean()
     logging.info("Generating signal values")
     df['signal'] = (df['close'] > df['rolling_mean']).astype(int)
+    logging.info("First window-1 rows contain NaN rolling_mean and are excluded from signal_rate computation")
     return df
+
 def save_metrics(metrics, output_path):
     try:
         with open(output_path, 'w') as file:
@@ -108,7 +125,7 @@ def main():
         logging.info(f"Metrics computation completed: {metrics}")
         save_metrics(metrics, args.output)
         print(json.dumps(metrics, indent=2))
-        logging.info("Job completed successfully.")
+        logging.info("Job completed successfully")
         sys.exit(0)
 
     except Exception as e:
