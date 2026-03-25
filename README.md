@@ -32,7 +32,8 @@ docker run --rm mlops-task
   "latency_ms": 127,
   "seed": 42,
   "status": "success"
-}```
+}
+```
 
 ### Failed:
 ```json
